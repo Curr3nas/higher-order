@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-'use strict';
 // drill 1 Functions as arguments(1)
 function repeat(fn, n) {
   for (let i = 1; i <= n; i++) {
@@ -81,15 +80,41 @@ powerlineWarning('Sugardale and Sugar Grove');
 // drill 4 forEach, filter and map
 
 const movements = [[0, 0], [0, 5], [-1, -3], [-3, 1], [2, -4], [3, 2]];
+// filter
 
-function findPositive(array) {
-  let newArray = [];
-  for (let i = 0; i < array.length; i++)
-    if (array[i][1] >= 0 && array[i][2] >=0 ) {
-      newArray.push(array[i]);
-    }
-  return newArray;
-}
+movements.filter(function (array) {
+  if(array[0] >=0 && array[1] >=0) {
+    console.log(array);
+  }
+});
 
+// map
 
-console.log(movements.filter(findPositive));
+movements.map(function (array){
+  let absoluteOne = Math.abs(array[0]);
+  let absoluteTwo = Math.abs(array[1]);
+  console.log(`Total Steps: ${absoluteOne + absoluteTwo}`);
+});
+
+// forEach
+
+movements.forEach(function (array) {
+  let absoluteOne = Math.abs(array[0]);
+  console.log(`Movement #1: ${absoluteOne} steps.`);
+  let absoluteTwo = Math.abs(array[1]);
+  console.log(`Movement #2: ${absoluteTwo} steps.`);
+});
+
+// drill 5 reduce
+
+const codedString = 'noggin oreo the moon time tele steed his tent apollo her lives though shoo tofu budapest'
+
+const coded = codedString.split(' ');
+
+console.log(coded.reduce(function(accumulator, currentValue){
+  if (currentValue.length !== 3) {
+    return accumulator + currentValue.charAt(currentValue.length-1).toUpperCase();
+  } else if (currentValue.length === 3) {
+    return accumulator + ' ';
+  }
+},''));
